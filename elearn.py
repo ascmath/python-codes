@@ -62,6 +62,3 @@ print 'Response and Percentages for Question 6 to 21 is saved to stats_2.csv'
 
 
 
-#print stats_1
-#print stats_2
-
