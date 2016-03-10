@@ -8,10 +8,10 @@ Created on Sat Feb  6 23:18:49 2016
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-import seaborn as sns; sns.set()
+#import seaborn as sns; sns.set()
 
 name=raw_input('Enter file name:')
-csv=name+'.csv'
+csv='\data'+name+'.csv'
 df_raw=pd.read_csv(csv,keep_default_na=False)
 df_qn=df_raw.copy()
 
@@ -27,12 +27,12 @@ for i in range(1,6):
     df_qn['q'+str(i)]=df_qn['q'+str(i)].str.replace('\,.+','') # removal of responses with double selections
 	
 
-df_qn.to_csv('C:/Users/laizs/Desktop/notebook/el/output/df_clean.csv') #saving of cleaned data
-print 'csv saved to C:/Users/laizs/Desktop/notebook/el/output', '\n'
+df_qn.to_csv('C:/Users/Kira/Desktop/elearning/output/df_clean.csv') #saving of cleaned data
+print 'csv saved to C:/Users/Kira/Desktop/elearning/output', '\n'
 
 summary_1_to_6=[]
 summary_6_to_21=[]
-tutorial_grps=sorted(df_raw.Class.unique())
+tutorial_grps=sorted(df_qn.Class.unique())
 
 for i in range(1,6):
 	df_summary=df_qn.pivot_table('Name',index='q'+str(i),columns='Class',aggfunc='count',fill_value=0,margins=True)
@@ -83,11 +83,11 @@ print 'Subject: ', name, '\n'
 
 
 stats_1_class=pd.concat(summary_1_to_6_class,axis = 0)
-stats_1_class.to_csv('C:/Users/laizs/Desktop/eLearning Survey/output/stats1_class.csv')	
+stats_1_class.to_csv('C:/Users/Kira/Desktop/elearning/output/stats1.csv')	
 print 'Response and Percentages for Question 1 to 6 by class is saved to stats_1.csv', '\n'
 
 stats_2_class=pd.concat(summary_6_to_21_class,axis = 0)
-stats_2_class.to_csv('C:/Users/laizs/Desktop/eLearning Survey/output/stats2_class.csv')	
+stats_2_class.to_csv('C:/Users/Kira/Desktop/elearning/output/stats2.csv')	
 print 'Response and Percentages for Question 6 to 21 by class is saved to stats_2.csv'
 
 
